@@ -1,3 +1,3 @@
-package aoc.days.day01;
+package aoc.day01;
 
 public record Rotation(char direction, int times) {}
