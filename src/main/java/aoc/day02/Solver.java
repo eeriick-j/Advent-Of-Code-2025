@@ -50,7 +50,8 @@ public class Solver {
         /// indexOf(...) = 4
         /*
          Si hay algún bloque repetido, aparecerá desplazado en el string duplicado antes
-         del final original (s.length())
+         del final original (s.length()).
+         Duplicarlo crea todas las posibles rotaciones
          */
         return (idStr + idStr).indexOf(idStr, 1) != idStr.length();
     }
