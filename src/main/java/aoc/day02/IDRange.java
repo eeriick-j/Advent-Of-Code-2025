@@ -1,3 +1,3 @@
 package aoc.day02;
 
-public record IDRange(int lowerBound, int upperBound) {}
+public record IDRange(long lowerBound, long upperBound) {}
