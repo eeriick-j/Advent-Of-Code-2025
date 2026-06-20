@@ -15,7 +15,7 @@ public class Dial {
         int sign = (rotation.direction() == 'L') ? -1 : 1;
         for(int t=0; t<rotation.times(); t++) {
             pointer = (pointer + sign + 100) % 100;
-            if(pointer == 0) numPointsToZero++;
+            if(pointer == 0) numClicksToZero++;
         }
     }
 
