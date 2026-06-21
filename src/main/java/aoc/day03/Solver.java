@@ -11,7 +11,7 @@ public class Solver {
     }
 
     public static long solvePart1(List<Bank> banks) {
-        /// Sumas de las mayores parejas de 2 dígitos (concatenados() para cada banco
+        /// Sumas de las mayores parejas de 2 dígitos (concatenados) para cada banco
         long sumVoltages = 0;
         for (Bank bank : banks) {
             int bestPair = 0;
