@@ -1,16 +1,21 @@
 package aoc.day08;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class InputParser {
-    public static List<Box> parse(String rawInput){
-        return rawInput.lines()
-                .map(line -> line.split(","))
-                .map(split -> new Box(toInt(split[0]), toInt(split[1]), toInt(split[2])))
-                .toList();
-    }
+    public static List<Box> parse(String input) {
+        String[] lines = input.split("\\R");
+        List<Box> boxes = new ArrayList<>();
 
-    private static int toInt(String string){
-        return Integer.parseInt(string);
+        for (int id = 0; id < lines.length; id++) {
+            List<Integer> boxItems = Arrays.stream(lines[id].split(","))
+                    .map(Integer::parseInt)
+                    .toList();
+            boxes.add(new Box(id, boxItems.get(0), boxItems.get(1), boxItems.get(2)));
+        }
+
+        return boxes;
     }
 }
