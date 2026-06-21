@@ -3,12 +3,13 @@ package aoc.day05;
 import aoc.day02.IDRange;
 import tasks.RawInputReader;
 
-import java.util.List;
+import java.util.*;
 
 public class Solver {
     public static void main(String[] args) {
         Pair pair = InputParser.parse(RawInputReader.read("inputs/day05.txt"));
         System.out.println("First part: " + solvePart1(pair));
+        System.out.println("Second part: " + solvePart2(pair.idRanges()));
     }
 
     public static long solvePart1(Pair pair){
@@ -17,15 +18,52 @@ public class Solver {
     }
 
     public static long numIngredientsFresh(List<IDRange> idRanges, List<Long> ids){
-        long numIngredientsFresh = 0;
-        for(long id: ids){
-            for(IDRange idRange: idRanges){
-                if(id >= idRange.lowerBound() && id <= idRange.upperBound()) {
-                    numIngredientsFresh++;
-                    break;                  // No contar más de una vez el mismo 'id' si es válido
-                }
-            }
+        return ids.stream()
+                .filter(id ->
+                        idRanges.stream()
+                                .anyMatch(idRange ->
+                                        id >= idRange.lowerBound() && id <= idRange.upperBound()))
+                .count();
+    }
+
+    public static long solvePart2(List<IDRange> idRanges){
+        /// Número de ingredientes frescos (todos los ids de idRanges)
+
+        // Ordenar los rangos por lowerBound
+        List<IDRange> sorted = idRanges.stream()
+                .sorted(Comparator.comparingLong(IDRange::lowerBound))
+                .toList();
+
+        return merge(sorted).stream()
+                // Restar los límites de cada rango da el número de ids dentro del rango
+                .mapToLong(r -> r.upperBound() - r.lowerBound() + 1)
+                .sum();
+    }
+
+    private static List<IDRange> merge(List<IDRange> ranges) {
+        // Fusionar rangos previamente ordenados
+        //      *) solapados -> [10-14], [12-18] --> [10-18]
+        //      *) contiguos -> [10-14], [14-18] --> [10-18]
+        List<IDRange> result = new ArrayList<>();
+        result.add(ranges.getFirst());
+
+        for (int i = 1; i < ranges.size(); i++) {
+            IDRange current = ranges.get(i);
+            IDRange last = result.getLast();
+
+            if (overlappedRange(current, last)) {
+                result.set(
+                        result.size() - 1,
+                        new IDRange(
+                                last.lowerBound(),
+                                Math.max(last.upperBound(), current.upperBound())
+                        ));
+            } else result.add(current);
         }
-        return numIngredientsFresh;
+        return result;
+    }
+
+    public static boolean overlappedRange(IDRange current, IDRange last) {
+        return current.lowerBound() <= last.upperBound() + 1;
     }
 }
