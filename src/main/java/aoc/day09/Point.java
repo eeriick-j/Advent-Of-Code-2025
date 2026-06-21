@@ -1,3 +1,3 @@
 package aoc.day09;
 
-public record Point(int x, int y) {}
+public record Point(long x, long y) {}
