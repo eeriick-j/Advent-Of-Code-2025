@@ -1,15 +1,11 @@
 package aoc.day05;
 
 import aoc.day02.IDRange;
-import tasks.RawInputReader;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class InputParser {
-    public static void main(String[] args) {
-        System.out.println(parse(RawInputReader.read("inputs/day05.txt")));
-    }
 
     public static Pair parse(String input) {
         List<IDRange> ranges = new ArrayList<>();
