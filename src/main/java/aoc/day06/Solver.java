@@ -30,4 +30,20 @@ public class Solver {
         }
         return sum;
     }
+
+    public static long solvePart2(Pair pair) {
+        ///  Suma de operaciones de cada columna de dígitos para columna
+        List<List<Integer>> values = pair.values();
+        List<Character> operators = pair.operators();
+        long sum = 0;
+
+        for (int col=0; col < values.getFirst().size(); col++) {
+            buildNumbersFromColumn(values, col);
+        }
+        return sum;
+    }
+
+    private static void buildNumbersFromColumn(List<List<Integer>> values, int col) {
+
+    }
 }
