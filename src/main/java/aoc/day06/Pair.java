@@ -1,3 +1,5 @@
 package aoc.day06;
 
-public record Pair(int[][] values, char[] operators) {}
+import java.util.List;
+
+public record Pair(List<List<Integer>> values, List<Character> operators) {}
