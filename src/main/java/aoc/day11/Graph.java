@@ -19,4 +19,8 @@ public class Graph {
     public List<String> neighbors(String node) {
         return adjacencyList.getOrDefault(node, List.of());
     }
+
+    public Map<String, List<String>> getAdjacencyList() {
+        return adjacencyList;
+    }
 }
