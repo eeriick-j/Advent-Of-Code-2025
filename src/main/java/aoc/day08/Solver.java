@@ -5,13 +5,8 @@ import tasks.RawInputReader;
 import java.util.*;
 
 public class Solver {
-
     public static void main(String[] args) {
         List<Box> boxes = InputParser.parse(RawInputReader.read("inputs/day08.txt"));
-        System.out.println("Part 1: " + solvePart1(boxes));
-    }
-
-    public static long solvePart1(List<Box> boxes) {
-        return 0;
+        // System.out.println("Part 1: " + solvePart1(boxes));
     }
 }
