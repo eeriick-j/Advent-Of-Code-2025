@@ -8,8 +8,8 @@ import java.util.Map;
 public class Solver {
     public static void main(String[] args) {
         Graph graph = InputParser.parse(RawInputReader.read("inputs/day11.txt"));
-        System.out.println(solvePart1(graph));
-        System.out.println(solvePart2(graph));
+        System.out.println("Part 1: " + solvePart1(graph));
+        System.out.println("Part 2: " + solvePart2(graph));
     }
 
     public static long solvePart1(Graph graph) {
