@@ -2,12 +2,13 @@ package aoc.day09;
 
 import tasks.RawInputReader;
 
-import java.util.List;
+import java.util.*;
 
 public class Solver {
     public static void main(String[] args) {
         List<Point> points = InputParser.parse(RawInputReader.read("inputs/day09.txt"));
         System.out.println("Part 1: " + solvePart1(points));
+        System.out.println("Part 2: " + solvePart2(points));
     }
 
     public static long solvePart1(List<Point> points) {
@@ -26,4 +27,6 @@ public class Solver {
         long dy = Math.abs(a.y() - b.y() + 1);
         return dx * dy;
     }
+
+
 }
