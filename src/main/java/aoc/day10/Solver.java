@@ -2,11 +2,15 @@ package aoc.day10;
 
 import tasks.RawInputReader;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Solver {
     public static void main(String[] args) {
         List<Machine> machines = InputParser.parse(RawInputReader.read("inputs/day10.txt"));
+        for (Machine machine : machines) {
+            System.out.println(Arrays.toString(machine.voltages()));
+        }
         System.out.println(solvePart1(machines));
     }
 
@@ -19,11 +23,11 @@ public class Solver {
     private static int solveMachine(Machine m) {
         int target = m.target();
         int[] buttons = m.buttons();
-        return bfsMinPresses(target, buttons);
+        return bfs(target, buttons);
     }
 
-    private static int bfsMinPresses(int target, int[] buttons) {
-        int maxState = 1 << 20; // ajusta según nº de luces reales
+    private static int bfs(int target, int[] buttons) {
+        int maxState = 1 << 20;         // ajusta según nº de luces reales
         boolean[] visited = new boolean[maxState];
         int[] dist = new int[maxState];
         int[] queue = new int[maxState];
@@ -48,4 +52,6 @@ public class Solver {
         }
         return -1;
     }
+
+
 }

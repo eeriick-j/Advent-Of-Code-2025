@@ -4,13 +4,19 @@ import java.util.*;
 import java.util.regex.*;
 
 public class InputParser {
+
     private static final Pattern BRACKETS = Pattern.compile("\\[(.*?)\\]");
     private static final Pattern PARENTHESIS = Pattern.compile("\\(([^)]*)\\)");
+    private static final Pattern CURLY = Pattern.compile("\\{([^}]*)\\}");
 
     public static List<Machine> parse(String input) {
         List<Machine> machines = new ArrayList<>();
         String[] lines = input.split("\\R");
-        for (String line : lines) if (!line.isBlank()) machines.add(toMachine(line));
+        for (String line : lines) {
+            if (!line.isBlank()) {
+                machines.add(toMachine(line));
+            }
+        }
         return machines;
     }
 
@@ -21,7 +27,6 @@ public class InputParser {
         String pattern = mPattern.group(1);
         int n = pattern.length();
 
-        // Inicio de la lectura por la izquierda -> bit 0 (LSB)
         int target = 0;
         for (int i = 0; i < n; i++) if (pattern.charAt(i) == '#') target |= (1 << i);
 
@@ -40,6 +45,26 @@ public class InputParser {
             }
             buttons.add(mask);
         }
-        return new Machine(target, buttons.stream().mapToInt(i -> i).toArray());
+
+        Matcher mVolt = CURLY.matcher(line);
+        int[] voltages = new int[0];
+
+        if (mVolt.find()) {
+            String inside = mVolt.group(1).trim();
+            if (!inside.isEmpty()) {
+                String[] parts = inside.split(",");
+                voltages = new int[parts.length];
+
+                for (int i = 0; i < parts.length; i++) {
+                    voltages[i] = Integer.parseInt(parts[i].trim());
+                }
+            }
+        }
+
+        return new Machine(
+                target,
+                buttons.stream().mapToInt(i -> i).toArray(),
+                voltages
+        );
     }
 }
