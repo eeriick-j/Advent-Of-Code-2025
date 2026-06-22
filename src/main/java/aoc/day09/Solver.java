@@ -1,5 +1,7 @@
 package aoc.day09;
 
+import aoc.day09.model.Point;
+import aoc.day09.model.Segment;
 import tasks.RawInputReader;
 
 import java.util.*;
