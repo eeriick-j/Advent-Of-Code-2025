@@ -21,9 +21,9 @@ public class InputParser {
         String pattern = mPattern.group(1);
         int n = pattern.length();
 
-        // Inicio de la lectura por la derecha -> bit 0 (LSB)
+        // Inicio de la lectura por la izquierda -> bit 0 (LSB)
         int target = 0;
-        for (int i = 0; i < n; i++) if (pattern.charAt(i) == '#') target |= (1 << (n - 1 - i));
+        for (int i = 0; i < n; i++) if (pattern.charAt(i) == '#') target |= (1 << i);
 
         Matcher mButtons = PARENTHESIS.matcher(line);
         List<Integer> buttons = new ArrayList<>();
