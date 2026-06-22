@@ -2,16 +2,13 @@ package aoc.day10;
 
 import tasks.RawInputReader;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Solver {
     public static void main(String[] args) {
         List<Machine> machines = InputParser.parse(RawInputReader.read("inputs/day10.txt"));
-        for (Machine machine : machines) {
-            System.out.println(Arrays.toString(machine.voltages()));
-        }
         System.out.println(solvePart1(machines));
+        System.out.println(solvePart2(machines));
     }
 
     public static long solvePart1(List<Machine> machines) {
@@ -53,5 +50,66 @@ public class Solver {
         return -1;
     }
 
+    public static long solvePart2(List<Machine> machines) {
+        long total = 0;
+        for (Machine m : machines) total += solveMachinePart2(m);
+        return total;
+    }
 
+    private static int solveMachinePart2(Machine m) {
+        int[][] buttons = expandButtons(m.buttons());
+        int[] target = m.voltages();
+        return bfsStateSpace(target, buttons);
+    }
+
+    // BFS en espacio de estados completo
+    private static int bfsStateSpace(int[] target, int[][] buttons) {
+        Queue<int[]> q = new ArrayDeque<>();
+        Set<String> visited = new HashSet<>();
+        int[] start = new int[target.length];
+
+        q.add(start);
+        visited.add(encode(start));
+        int steps = 0;
+        while (!q.isEmpty()) {
+            int size = q.size();
+            for (int i = 0; i < size; i++) {
+                int[] state = q.poll();
+                if (Arrays.equals(state, target)) return steps;
+                for (int[] b : buttons) {
+                    int[] next = state.clone();
+                    apply(next, b);
+                    String key = encode(next);
+                    if (visited.add(key)) q.add(next);
+                }
+            }
+            steps++;
+        }
+        return -1;
+    }
+
+    private static void apply(int[] state, int[] mask) {
+        for (int i : mask) state[i]++;
+    }
+
+    private static String encode(int[] state) {
+        return Arrays.toString(state);
+    }
+
+    // bitmask -> índices
+    private static int[][] expandButtons(int[] buttons) {
+        int[][] res = new int[buttons.length][];
+        for (int i = 0; i < buttons.length; i++) {
+            int mask = buttons[i];
+            List<Integer> idx = new ArrayList<>();
+            int bit = 0;
+            while (mask != 0) {
+                if ((mask & 1) == 1) idx.add(bit);
+                mask >>= 1;
+                bit++;
+            }
+            res[i] = idx.stream().mapToInt(x -> x).toArray();
+        }
+        return res;
+    }
 }
