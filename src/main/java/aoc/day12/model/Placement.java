@@ -1,3 +1,5 @@
 package aoc.day12.model;
 
-public record Placement(Piece piece, int offsetX, int offsetY) {}
+import java.util.List;
+
+public record Placement(Piece piece, int offsetX, int offsetY, List<Cell> cells) {}
