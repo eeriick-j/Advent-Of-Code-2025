@@ -1,4 +1,4 @@
-package aoc.day12;
+package aoc.day12.model;
 
 import java.util.List;
 
