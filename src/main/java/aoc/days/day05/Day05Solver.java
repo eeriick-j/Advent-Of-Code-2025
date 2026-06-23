@@ -6,10 +6,10 @@ import aoc.days.day05.model.Pair;
 
 import java.util.*;
 
-public class Day05 implements DaySolver {
+public class Day05Solver implements DaySolver {
     private final Pair pair;
 
-    public Day05(Pair pair) {
+    public Day05Solver(Pair pair) {
         this.pair = pair;
     }
 
