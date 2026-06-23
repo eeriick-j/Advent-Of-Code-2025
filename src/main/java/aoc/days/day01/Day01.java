@@ -1,24 +1,27 @@
 package aoc.days.day01;
 
-import aoc.io.TXTFileReader;
+import aoc.core.DaySolver;
+import aoc.days.day01.model.Rotation;
 
 import java.util.List;
 
-public class Solver {
-    public static void main(String[] args) {
-        List<Rotation> rotations = InputParser.parse(new TXTFileReader().read("inputs/day01.txt"));
-        System.out.println("Part 1: " + solvePart1(rotations));
-        System.out.println("Part 2: " + solvePart2(rotations));
+public class Day01 implements DaySolver {
+    private final List<Rotation> rotations;
+
+    public Day01(List<Rotation> rotations) {
+        this.rotations = rotations;
     }
 
-    public static int solvePart1(List<Rotation> rotations) {
+    @Override
+    public Integer solvePart1() {
         ///Número de veces que el dial pasa por 0 para cada rotación completa
         Dial dial = new Dial();
         for (Rotation rotation : rotations) dial.rotateFull(rotation);
         return dial.numPointsToZero();
     }
 
-    public static int solvePart2(List<Rotation> rotations) {
+    @Override
+    public Integer solvePart2() {
         /// Número de veces que el dial pasa por 0 durante cada click individual para cada rotación
         Dial dial = new Dial();
         for (Rotation rotation : rotations) dial.rotateClickByClick(rotation);

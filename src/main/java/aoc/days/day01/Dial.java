@@ -1,5 +1,7 @@
 package aoc.days.day01;
 
+import aoc.days.day01.model.Rotation;
+
 public class Dial {
     private int pointer = 50;
     private int numPointsToZero = 0;

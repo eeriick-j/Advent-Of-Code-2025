@@ -1,5 +1,7 @@
 package aoc.days.day01;
 
+import aoc.days.day01.model.Rotation;
+
 import java.util.List;
 
 public class InputParser {
