@@ -6,10 +6,10 @@ import aoc.days.day08.model.Pair;
 
 import java.util.*;
 
-public class Day08 implements DaySolver {
+public class Day08Solver implements DaySolver {
     private final List<Box> boxes;
 
-    public Day08(List<Box> boxes) {
+    public Day08Solver(List<Box> boxes) {
         this.boxes = boxes;
     }
 
