@@ -1,14 +1,16 @@
 package aoc.days.day02;
 
+import aoc.core.InputParser;
 import aoc.days.day02.model.IDRange;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class InputParser {
-    public static List<IDRange> parse(String rawInput) {
+public class Day02Parser implements InputParser<List<IDRange>> {
+    @Override
+    public List<IDRange> parse(String rawInput) {
         return Arrays.stream(rawInput.split(","))
-                .map(InputParser::stringToIDRange)
+                .map(Day02Parser::stringToIDRange)
                 .toList();
     }
 
