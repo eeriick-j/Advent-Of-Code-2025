@@ -1,9 +1,11 @@
 package aoc.days.day11;
 
+import aoc.core.InputParser;
 import aoc.days.day11.model.Graph;
 
-public class InputParser {
-    public static Graph parse(String rawInput) {
+public class Day10Parser implements InputParser<Graph> {
+    @Override
+    public Graph parse(String rawInput) {
         Graph graph = new Graph();
         String[] lines = rawInput.split("\\n");
 
