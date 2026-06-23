@@ -1,52 +1,51 @@
 package aoc.days.day12;
 
+import aoc.core.DaySolver;
 import aoc.days.day12.model.*;
-import aoc.io.TXTFileReader;
 
 import java.util.*;
 
-public class Solver {
+public class Day12 implements DaySolver {
+    private final Puzzle puzzle;
 
-    public static void main(String[] args) {
-        Puzzle puzzle = InputParser.parse(new TXTFileReader().read("inputs/day12.txt"));
-        System.out.println("Part 1: " + solvePart1(puzzle.pieces(), puzzle.regions()));
+    public Day12(Puzzle puzzle) {
+        this.puzzle = puzzle;
     }
 
-    private static int solvePart1(List<Piece> pieces, List<Region> regions) {
+    @Override
+    public Integer solvePart1() {
+        List<Piece> pieces = puzzle.pieces();
+        List<Region> regions = puzzle.regions();
         int valid = 0;
 
         for (Region region : regions) {
-            // 1. chequeo rápido de área (pruning barato)
+            // 1. Chequeo rápido de área (pruning)
             int requiredArea = 0;
             for (int i = 0; i < region.requirements().length; i++) {
                 requiredArea += pieces.get(i).area() * region.requirements()[i];
             }
             if (requiredArea > region.area()) continue;
 
-            // 2. construir opciones de placements por pieza
-            Map<Piece, List<Placement>> options = new HashMap<>();
-
+            // 2. Construir opciones de placements por pieza
+            Map<Piece, List<Placement>> variants = new HashMap<>();
             for (Piece piece : pieces) {
                 List<Placement> placements = new ArrayList<>();
                 for (Piece variant : PieceTransformer.generateVariants(piece)) {
                     placements.addAll(generatePlacements(variant, region));
                 }
-                options.put(piece, placements);
+                variants.put(piece, placements);
             }
-
             // Iniciar backtraking desde las piezas más restrictivas (más grandes, menos placements)
-            pieces.sort(Comparator.comparingInt(p -> options.get(p).size()));
+            pieces.sort(Comparator.comparingInt(p -> variants.get(p).size()));
 
-            // 3. Algoritmo
-            if (backtracking(0, pieces, options, new HashSet<>())) valid++;
+            // 3. Iniciar backtracking
+            if (backtracking(0, pieces, variants, new HashSet<>())) valid++;
         }
-
         return valid;
     }
 
-    private static List<Placement> generatePlacements(Piece piece, Region region) {
+    private List<Placement> generatePlacements(Piece piece, Region region) {
         List<Placement> placements = new ArrayList<>();
-
         int width = region.width();
         int height = region.height();
 
@@ -66,11 +65,10 @@ public class Solver {
                 if (ok) placements.add(new Placement(piece, x, y, cells));
             }
         }
-
         return placements;
     }
 
-    private static boolean backtracking(int index,
+    private boolean backtracking(int index,
                          List<Piece> pieces,
                          Map<Piece, List<Placement>> options,
                          Set<Cell> occupied) {
@@ -87,16 +85,21 @@ public class Solver {
         return false;
     }
 
-    private static boolean collides(Placement p, Set<Cell> occupied) {
+    private boolean collides(Placement p, Set<Cell> occupied) {
         for (Cell c : p.cells()) if (occupied.contains(c)) return true;
         return false;
     }
 
-    private static void add(Set<Cell> occupied, Placement p) {
+    private void add(Set<Cell> occupied, Placement p) {
         occupied.addAll(p.cells());
     }
 
-    private static void remove(Set<Cell> occupied, Placement p) {
+    private void remove(Set<Cell> occupied, Placement p) {
         p.cells().forEach(occupied::remove);
+    }
+
+    @Override
+    public Object solvePart2() {
+        return null;
     }
 }
