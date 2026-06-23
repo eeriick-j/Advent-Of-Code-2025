@@ -1,18 +1,19 @@
 package aoc.days.day07;
 
-import aoc.io.TXTFileReader;
+import aoc.core.DaySolver;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class Solver {
-    public static void main(String[] args) {
-        char[][] grid = InputParser.parse(new TXTFileReader().read("inputs/day07.txt"));
-        System.out.println("First part: " + solvePart1(grid));
-        System.out.println("Second part: " + solvePart2(grid));
+public class Day07 implements DaySolver {
+    private final char[][] grid;
+
+    public Day07(char[][] grid) {
+        this.grid = grid;
     }
 
-    public static int solvePart1(char[][] grid) {
+    @Override
+    public Integer solvePart1() {
         ///  Número de veces que un rayo inicial se divide contra obstáculos
         final int start = new String(grid[0]).indexOf('S');
         Set<Integer> current = new HashSet<>();
@@ -27,16 +28,15 @@ public class Solver {
                     if (pos + 1 < grid[row].length) next.add(pos + 1);
                     splits++;
                 }
-                else {
-                    next.add(pos);
-                }
+                else next.add(pos);
             }
             current = next;
         }
         return splits;
     }
 
-    public static long solvePart2(char[][] grid) {
+    @Override
+    public Long solvePart2() {
         ///  Número de paths distintos posibles (árbol)
         final int start = new String(grid[0]).indexOf('S');
 
@@ -55,13 +55,11 @@ public class Solver {
                 if (grid[row][col] == '^') {
                     if (col - 1 >= 0)           next[col - 1] += ways;
                     if (col + 1 < next.length)  next[col + 1] += ways;
-                } else {
-                    next[col] += ways;
                 }
+                else next[col] += ways;
             }
             current = next;
         }
-
         // Suma de formas de llegar a cada fila v
         long result = 0;
         for (long v : current) result += v;
