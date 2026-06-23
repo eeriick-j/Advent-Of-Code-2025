@@ -2,15 +2,15 @@ package aoc.days.day04;
 
 import aoc.core.DaySolver;
 
-public class Day04 implements DaySolver {
+public class Day04Solver implements DaySolver {
     private final char[][] rollsOfPapers;
 
-    public Day04(char[][] rollsOfPapers) {
+    public Day04Solver(char[][] rollsOfPapers) {
         this.rollsOfPapers = rollsOfPapers;
     }
 
     @Override
-    public  Integer solvePart1() {
+    public Integer solvePart1() {
         /// Número de rollos accesibles (los que tengan menos de 4 rollos adyacentes (8-position))
         int accessibleRolls = 0;
 
@@ -22,7 +22,7 @@ public class Day04 implements DaySolver {
         return accessibleRolls;
     }
 
-    private static boolean isAccessible(char[][] rollsOfPapers, int i, int j) {
+    private boolean isAccessible(char[][] rollsOfPapers, int i, int j) {
         if(rollsOfPapers[i][j] != '@') return false;
         int numRollsAround = 0;
 
