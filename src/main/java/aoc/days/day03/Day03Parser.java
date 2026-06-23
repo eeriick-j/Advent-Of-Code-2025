@@ -1,13 +1,15 @@
 package aoc.days.day03;
 
+import aoc.core.InputParser;
 import aoc.days.day03.model.Bank;
 
 import java.util.List;
 
-public class InputParser {
-    public static List<Bank> parse(String rawInput) {
+public class Day03Parser implements InputParser<List<Bank>> {
+    @Override
+    public List<Bank> parse(String rawInput) {
         return rawInput.lines()
-                .map(InputParser::toBank)
+                .map(Day03Parser::toBank)
                 .toList();
     }
 

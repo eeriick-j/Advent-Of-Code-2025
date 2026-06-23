@@ -1,9 +1,9 @@
 package aoc;
 
 import aoc.core.InputParser;
-import aoc.days.day02.Day02Parser;
-import aoc.days.day02.Day02Solver;
-import aoc.days.day02.model.IDRange;
+import aoc.days.day03.Day03Parser;
+import aoc.days.day03.Day03Solver;
+import aoc.days.day03.model.Bank;
 import aoc.io.FileReader;
 import aoc.io.TXTFileReader;
 
@@ -11,12 +11,12 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        InputParser<List<IDRange>> parser = new Day02Parser();
+        InputParser<List<Bank>> parser = new Day03Parser();
         FileReader reader = new TXTFileReader();
 
-        List<IDRange> idRanges = parser.parse(reader.read("inputs/day02.txt"));
-        Day02Solver day01 = new Day02Solver(idRanges);
-        System.out.println("First part: " + day01.solvePart1());
-        System.out.println("Second part: " + day01.solvePart2());
+        List<Bank> banks = parser.parse(reader.read("inputs/day03.txt"));
+        Day03Solver day03 = new Day03Solver(banks);
+        System.out.println("First part: " + day03.solvePart1());
+        System.out.println("Second part: " + day03.solvePart2());
     }
 }

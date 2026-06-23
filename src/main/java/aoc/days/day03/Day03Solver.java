@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-public class Day03 implements DaySolver {
+public class Day03Solver implements DaySolver {
     private final List<Bank> banks;
 
-    public Day03(List<Bank> banks) {
+    public Day03Solver(List<Bank> banks) {
         this.banks = banks;
     }
 
@@ -36,7 +36,7 @@ public class Day03 implements DaySolver {
         return sumVoltages;
     }
 
-    private static List<Integer> maxSubsequence(List<Integer> nums, int k) {
+    private List<Integer> maxSubsequence(List<Integer> nums, int k) {
         Deque<Integer> stack = new ArrayDeque<>();
         int toRemove = nums.size() - k;
 
@@ -52,7 +52,7 @@ public class Day03 implements DaySolver {
         return new ArrayList<>(stack);
     }
 
-    private static long toNumber(List<Integer> digits) {
+    private long toNumber(List<Integer> digits) {
         long result = 0;
         for (int d : digits) result = result * 10 + d;
         return result;
