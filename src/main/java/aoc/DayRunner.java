@@ -1,10 +1,11 @@
 package aoc;
 
 import aoc.core.DaySolver;
+import aoc.io.FileReader;
 import aoc.io.TXTFileReader;
 
 public class DayRunner {
-    private static final TXTFileReader reader = new TXTFileReader();
+    private static final FileReader reader = new TXTFileReader();
 
     public static void run(int day) {
         forceLoadOnJVM();
