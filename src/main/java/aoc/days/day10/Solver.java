@@ -1,5 +1,6 @@
 package aoc.days.day10;
 
+import aoc.days.day10.model.Machine;
 import aoc.io.TXTFileReader;
 
 import java.util.*;

@@ -1,10 +1,11 @@
 package aoc.days.day10;
 
+import aoc.days.day10.model.Machine;
+
 import java.util.*;
 import java.util.regex.*;
 
 public class InputParser {
-
     private static final Pattern BRACKETS = Pattern.compile("\\[(.*?)\\]");
     private static final Pattern PARENTHESIS = Pattern.compile("\\(([^)]*)\\)");
     private static final Pattern CURLY = Pattern.compile("\\{([^}]*)\\}");
@@ -13,9 +14,7 @@ public class InputParser {
         List<Machine> machines = new ArrayList<>();
         String[] lines = input.split("\\R");
         for (String line : lines) {
-            if (!line.isBlank()) {
-                machines.add(toMachine(line));
-            }
+            if (!line.isBlank()) machines.add(toMachine(line));
         }
         return machines;
     }
@@ -60,11 +59,6 @@ public class InputParser {
                 }
             }
         }
-
-        return new Machine(
-                target,
-                buttons.stream().mapToInt(i -> i).toArray(),
-                voltages
-        );
+        return new Machine(target, buttons.stream().mapToInt(i -> i).toArray(), voltages);
     }
 }
