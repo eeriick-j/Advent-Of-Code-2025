@@ -1,5 +1,6 @@
 package aoc.days.day06;
 
+import aoc.DayRegistry;
 import aoc.core.DaySolver;
 
 import java.util.List;
@@ -9,6 +10,15 @@ public class Day06 implements DaySolver {
 
     public Day06(List<String> grid) {
         this.grid = grid;
+    }
+
+
+    public static DaySolver build(String input) {
+        return new Day06(new Day06Parser().parse(input));
+    }
+
+    static {
+        DayRegistry.register(6, Day06::build);
     }
 
     @Override
