@@ -1,5 +1,7 @@
 package aoc.days.day08;
 
+import aoc.days.day08.model.Box;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

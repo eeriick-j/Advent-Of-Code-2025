@@ -15,16 +15,13 @@ public class DSU {
     }
 
     public int find(int x) {
-        if (parent[x] != x) {
-            parent[x] = find(parent[x]);
-        }
+        if (parent[x] != x) parent[x] = find(parent[x]);
         return parent[x];
     }
 
     public void union(int a, int b) {
         int rootA = find(a);
         int rootB = find(b);
-
         if (rootA == rootB) return;
 
         if (size[rootA] < size[rootB]) {
@@ -35,9 +32,5 @@ public class DSU {
 
         parent[rootB] = rootA;
         size[rootA] += size[rootB];
-    }
-
-    public int getSize(int x) {
-        return size[find(x)];
     }
 }
