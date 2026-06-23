@@ -5,10 +5,10 @@ import aoc.core.DaySolver;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Day07Solver implements DaySolver {
+public class Day07 implements DaySolver {
     private final char[][] grid;
 
-    public Day07Solver(char[][] grid) {
+    public Day07(char[][] grid) {
         this.grid = grid;
     }
 

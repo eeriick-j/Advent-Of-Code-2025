@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-public class Day03Solver implements DaySolver {
+public class Day03 implements DaySolver {
     private final List<Bank> banks;
 
-    public Day03Solver(List<Bank> banks) {
+    public Day03(List<Bank> banks) {
         this.banks = banks;
     }
 

@@ -6,10 +6,10 @@ import aoc.days.day09.model.Segment;
 
 import java.util.*;
 
-public class Day09Solver implements DaySolver {
+public class Day09 implements DaySolver {
     private final List<Point> points;
 
-    public Day09Solver(List<Point> points) {
+    public Day09(List<Point> points) {
         this.points = points;
     }
 

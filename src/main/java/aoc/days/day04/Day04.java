@@ -2,10 +2,10 @@ package aoc.days.day04;
 
 import aoc.core.DaySolver;
 
-public class Day04Solver implements DaySolver {
+public class Day04 implements DaySolver {
     private final char[][] rollsOfPapers;
 
-    public Day04Solver(char[][] rollsOfPapers) {
+    public Day04(char[][] rollsOfPapers) {
         this.rollsOfPapers = rollsOfPapers;
     }
 

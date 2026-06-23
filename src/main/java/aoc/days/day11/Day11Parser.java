@@ -3,7 +3,7 @@ package aoc.days.day11;
 import aoc.core.InputParser;
 import aoc.days.day11.model.Graph;
 
-public class Day10Parser implements InputParser<Graph> {
+public class Day11Parser implements InputParser<Graph> {
     @Override
     public Graph parse(String rawInput) {
         Graph graph = new Graph();

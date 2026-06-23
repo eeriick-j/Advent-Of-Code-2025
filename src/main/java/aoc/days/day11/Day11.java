@@ -6,10 +6,10 @@ import aoc.days.day11.model.Graph;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Day11Solver implements DaySolver {
+public class Day11 implements DaySolver {
     private final Graph graph;
 
-    public Day11Solver(Graph graph) {
+    public Day11(Graph graph) {
         this.graph = graph;
     }
 

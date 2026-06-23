@@ -5,10 +5,10 @@ import aoc.days.day02.model.IDRange;
 
 import java.util.List;
 
-public class Day02Solver implements DaySolver {
+public class Day02 implements DaySolver {
     private final List<IDRange> idRanges;
 
-    public Day02Solver(List<IDRange> idRanges) {
+    public Day02(List<IDRange> idRanges) {
         this.idRanges = idRanges;
     }
 

@@ -5,10 +5,10 @@ import aoc.days.day01.model.Rotation;
 
 import java.util.List;
 
-public class Day01Solver implements DaySolver {
+public class Day01 implements DaySolver {
     private final List<Rotation> rotations;
 
-    public Day01Solver(List<Rotation> rotations) {
+    public Day01(List<Rotation> rotations) {
         this.rotations = rotations;
     }
 
