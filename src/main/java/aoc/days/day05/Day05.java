@@ -1,23 +1,25 @@
 package aoc.days.day05;
 
-import aoc.days.day02.model.IDRange;
-import aoc.io.TXTFileReader;
+import aoc.core.DaySolver;
+import aoc.days.day05.model.IDRange;
+import aoc.days.day05.model.Pair;
 
 import java.util.*;
 
-public class Solver {
-    public static void main(String[] args) {
-        Pair pair = InputParser.parse(new TXTFileReader().read("inputs/day05.txt"));
-        System.out.println("First part: " + solvePart1(pair));
-        System.out.println("Second part: " + solvePart2(pair.idRanges()));
+public class Day05 implements DaySolver {
+    private final Pair pair;
+
+    public Day05(Pair pair) {
+        this.pair = pair;
     }
 
-    public static long solvePart1(Pair pair){
+    @Override
+    public Long solvePart1(){
         ///  Número de ingredientes frescos (los que su id esté incluido en algún rango de idRanges)
         return numIngredientsFresh(pair.idRanges(), pair.ids());
     }
 
-    public static long numIngredientsFresh(List<IDRange> idRanges, List<Long> ids){
+    private static long numIngredientsFresh(List<IDRange> idRanges, List<Long> ids){
         return ids.stream()
                 .filter(id ->
                         idRanges.stream()
@@ -26,11 +28,12 @@ public class Solver {
                 .count();
     }
 
-    public static long solvePart2(List<IDRange> idRanges){
+    @Override
+    public Long solvePart2(){
         /// Número de ingredientes frescos (todos los ids de idRanges)
 
         // Ordenar los rangos por lowerBound
-        List<IDRange> sorted = idRanges.stream()
+        List<IDRange> sorted = pair.idRanges().stream()
                 .sorted(Comparator.comparingLong(IDRange::lowerBound))
                 .toList();
 
@@ -63,7 +66,7 @@ public class Solver {
         return result;
     }
 
-    public static boolean overlappedRange(IDRange current, IDRange last) {
+    private static boolean overlappedRange(IDRange current, IDRange last) {
         return current.lowerBound() <= last.upperBound() + 1;
     }
 }

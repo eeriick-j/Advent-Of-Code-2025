@@ -1,13 +1,15 @@
 package aoc;
 
-import aoc.days.day04.Day04;
+import aoc.days.day05.Day05;
+import aoc.days.day05.InputParser;
+import aoc.days.day05.model.Pair;
 import aoc.io.TXTFileReader;
 
 public class Main {
     public static void main(String[] args) {
-        char[][] rollsOfPapers = aoc.days.day04.InputParser.parse(new TXTFileReader().read("inputs/day04.txt"));
-        Day04 day04 = new Day04(rollsOfPapers);
-        System.out.println("First part: " + day04.solvePart1());
-        System.out.println("Second part: " + day04.solvePart2());
+        Pair pair = InputParser.parse(new TXTFileReader().read("inputs/day05.txt"));
+        Day05 day05 = new Day05(pair);
+        System.out.println("First part: " + day05.solvePart1());
+        System.out.println("Second part: " + day05.solvePart2());
     }
 }

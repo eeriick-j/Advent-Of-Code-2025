@@ -1,6 +1,7 @@
 package aoc.days.day05;
 
-import aoc.days.day02.model.IDRange;
+import aoc.days.day05.model.IDRange;
+import aoc.days.day05.model.Pair;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,4 @@
-package aoc.days.day05;
-
-import aoc.days.day02.model.IDRange;
+package aoc.days.day05.model;
 
 import java.util.List;
 
