@@ -1,5 +1,7 @@
 package aoc.days.day02;
 
+import aoc.days.day02.model.IDRange;
+
 import java.util.Arrays;
 import java.util.List;
 
