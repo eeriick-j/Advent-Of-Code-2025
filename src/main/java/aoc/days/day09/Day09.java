@@ -3,7 +3,6 @@ package aoc.days.day09;
 import aoc.core.DaySolver;
 import aoc.days.day09.model.Point;
 import aoc.days.day09.model.Segment;
-import aoc.io.TXTFileReader;
 
 import java.util.*;
 
