@@ -1,7 +1,7 @@
 package aoc;
 
 import aoc.days.day11.Day11;
-import aoc.days.day11.Graph;
+import aoc.days.day11.model.Graph;
 import aoc.days.day11.InputParser;
 import aoc.io.TXTFileReader;
 

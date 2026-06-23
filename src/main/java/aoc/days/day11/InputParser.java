@@ -1,5 +1,7 @@
 package aoc.days.day11;
 
+import aoc.days.day11.model.Graph;
+
 public class InputParser {
     public static Graph parse(String rawInput) {
         Graph graph = new Graph();

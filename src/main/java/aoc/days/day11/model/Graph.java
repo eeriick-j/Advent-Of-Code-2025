@@ -1,4 +1,4 @@
-package aoc.days.day11;
+package aoc.days.day11.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;

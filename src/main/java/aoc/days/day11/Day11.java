@@ -1,8 +1,7 @@
 package aoc.days.day11;
 
 import aoc.core.DaySolver;
-import aoc.days.day10.Day10;
-import aoc.io.TXTFileReader;
+import aoc.days.day11.model.Graph;
 
 import java.util.HashMap;
 import java.util.Map;
