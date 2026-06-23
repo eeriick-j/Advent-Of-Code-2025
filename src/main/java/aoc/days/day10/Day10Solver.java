@@ -5,10 +5,10 @@ import aoc.days.day10.model.Machine;
 
 import java.util.*;
 
-public class Day10 implements DaySolver {
+public class Day10Solver implements DaySolver {
     private final List<Machine> machines;
 
-    public Day10(List<Machine> machines) {
+    public Day10Solver(List<Machine> machines) {
         this.machines = machines;
     }
 

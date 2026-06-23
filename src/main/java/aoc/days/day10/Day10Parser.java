@@ -1,16 +1,18 @@
 package aoc.days.day10;
 
+import aoc.core.InputParser;
 import aoc.days.day10.model.Machine;
 
 import java.util.*;
 import java.util.regex.*;
 
-public class InputParser {
+public class Day10Parser implements InputParser<List<Machine>> {
     private static final Pattern BRACKETS = Pattern.compile("\\[(.*?)\\]");
     private static final Pattern PARENTHESIS = Pattern.compile("\\(([^)]*)\\)");
     private static final Pattern CURLY = Pattern.compile("\\{([^}]*)\\}");
 
-    public static List<Machine> parse(String input) {
+    @Override
+    public List<Machine> parse(String input) {
         List<Machine> machines = new ArrayList<>();
         String[] lines = input.split("\\R");
         for (String line : lines) {
