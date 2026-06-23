@@ -2,8 +2,6 @@ package aoc.days.day07;
 
 import aoc.DayRegistry;
 import aoc.core.DaySolver;
-import aoc.days.day04.Day04;
-import aoc.days.day04.Day04Parser;
 
 import java.util.HashSet;
 import java.util.Set;

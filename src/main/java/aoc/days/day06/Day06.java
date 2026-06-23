@@ -12,7 +12,6 @@ public class Day06 implements DaySolver {
         this.grid = grid;
     }
 
-
     public static DaySolver build(String input) {
         return new Day06(new Day06Parser().parse(input));
     }
@@ -30,18 +29,17 @@ public class Day06 implements DaySolver {
         int col = 0;
         while (col < cols) {
             // Saltar columnas completamente vacías
-            if (isSeparatorColumn(grid, col)) {
+            if (fullEmptyColumn(grid, col)) {
                 col++;
                 continue;
             }
-
-            // Encontrar límites del bloque
+            // Definir los índices de inicio y fin
             int start = col;
             int end = col;
-            while (end + 1 < cols && !isSeparatorColumn(grid, end + 1)) end++;
+            while (end + 1 < cols && !fullEmptyColumn(grid, end + 1)) end++;
 
             // Buscar operador
-            char op = findOperator(rows, start, end);
+            char op = findOperatorInLastRow(rows, start, end);
             if (op != ' ') {
                 Long result = null;
 
@@ -51,7 +49,8 @@ public class Day06 implements DaySolver {
                     boolean hasDigit = false;
                     long value = 0;
 
-                    for (int c = start; c <= end; c++) {
+                    for (int c=start; c<=end; c++) {
+                        // Si la fila no tiene la columna 'c', no transformar a número
                         char ch = c < s.length() ? s.charAt(c) : ' ';
                         if (Character.isDigit(ch)) {
                             value = value * 10 + (ch - '0');
@@ -71,7 +70,7 @@ public class Day06 implements DaySolver {
         return sum;
     }
 
-    private boolean isSeparatorColumn(List<String> grid, int col) {
+    private boolean fullEmptyColumn(List<String> grid, int col) {
         for (String row : grid) {
             char ch = col < row.length() ? row.charAt(col) : ' ';
             if (ch != ' ') return false;
@@ -79,7 +78,7 @@ public class Day06 implements DaySolver {
         return true;
     }
 
-    private char findOperator(int rows, int start, int end) {
+    private char findOperatorInLastRow(int rows, int start, int end) {
         char op = ' ';
         String lastRow = grid.get(rows - 1);
         for (int c = start; c <= end; c++) {
@@ -97,16 +96,17 @@ public class Day06 implements DaySolver {
 
         int col = 0;
         while (col < cols) {
-            if (isSeparatorColumn(grid, col)) {
+            // Saltar filas completamente vacías
+            if (fullEmptyColumn(grid, col)) {
                 col++;
                 continue;
             }
-
+            // Definir los índices de inicio y fin
             int start = col;
             int end = col;
-            while (end + 1 < cols && !isSeparatorColumn(grid, end + 1)) end++;
+            while (end + 1 < cols && !fullEmptyColumn(grid, end + 1)) end++;
 
-            char op = findOperator(rows, start, end);
+            char op = findOperatorInLastRow(rows, start, end);
             if (op != ' ') {
                 Long result = null;
 
