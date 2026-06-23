@@ -1,17 +1,13 @@
 package aoc;
 
-import aoc.days.day03.Day03;
-import aoc.days.day03.InputParser;
-import aoc.days.day03.model.Bank;
+import aoc.days.day04.Day04;
 import aoc.io.TXTFileReader;
-
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<Bank> banks = InputParser.parse(new TXTFileReader().read("inputs/day03.txt"));
-        Day03 day03 = new Day03(banks);
-        System.out.println("Part 1: " + day03.solvePart1());
-        System.out.println("Part 2: " + day03.solvePart2());
+        char[][] rollsOfPapers = aoc.days.day04.InputParser.parse(new TXTFileReader().read("inputs/day04.txt"));
+        Day04 day04 = new Day04(rollsOfPapers);
+        System.out.println("First part: " + day04.solvePart1());
+        System.out.println("Second part: " + day04.solvePart2());
     }
 }

@@ -1,15 +1,16 @@
 package aoc.days.day04;
 
-import aoc.io.TXTFileReader;
+import aoc.core.DaySolver;
 
-public class Solver {
-    public static void main(String[] args) {
-        char[][] rollsOfPapers = InputParser.parse(new TXTFileReader().read("inputs/day04.txt"));
-        System.out.println("First part: " + solvePart1(rollsOfPapers));
-        System.out.println("Second part: " + solvePart2(rollsOfPapers));
+public class Day04 implements DaySolver {
+    private final char[][] rollsOfPapers;
+
+    public Day04(char[][] rollsOfPapers) {
+        this.rollsOfPapers = rollsOfPapers;
     }
 
-    public static int solvePart1(char[][] rollsOfPapers) {
+    @Override
+    public  Integer solvePart1() {
         /// Número de rollos accesibles (los que tengan menos de 4 rollos adyacentes (8-position))
         int accessibleRolls = 0;
 
@@ -35,7 +36,8 @@ public class Solver {
         return numRollsAround < 4;
     }
 
-    public static int solvePart2(char[][] rollsOfPapers){
+    @Override
+    public Integer solvePart2(){
         /// Número de rollos accesibles (los que tengan menos de 4 rollos adyacentes (8-position))
         /// Al terminar cada ronda, se eliminan los accesibles de esa ronda y nuevos rollos
         /// resultan accesibles
