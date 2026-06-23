@@ -7,8 +7,8 @@ import java.util.*;
 public class Solver {
     public static void main(String[] args) {
         List<Machine> machines = InputParser.parse(RawInputReader.read("inputs/day10.txt"));
-        System.out.println(solvePart1(machines));
-        System.out.println(solvePart2(machines));
+        System.out.println("Part 1: " + solvePart1(machines));
+        System.out.println("Part 2: " + solvePart2(machines));
     }
 
     public static long solvePart1(List<Machine> machines) {
@@ -24,7 +24,7 @@ public class Solver {
     }
 
     private static int bfs(int target, int[] buttons) {
-        int maxState = 1 << 20;         // ajusta según nº de luces reales
+        int maxState = 1 << 20;
         boolean[] visited = new boolean[maxState];
         int[] dist = new int[maxState];
         int[] queue = new int[maxState];
@@ -52,9 +52,7 @@ public class Solver {
 
     public static long solvePart2(List<Machine> machines) {
         long total = 0;
-        for (Machine m : machines) {
-            total += solveMachinePart2(m);
-        }
+        for (Machine m : machines) total += solveMachinePart2(m);
         return total;
     }
 
@@ -81,12 +79,10 @@ public class Solver {
 
         int n = cur.length;
         int B = buttons.length;
-
         long best = Long.MAX_VALUE;
 
-        // todos los subconjuntos de botones (Phase 1)
+        // todos los subconjuntos de botones
         for (int mask = 0; mask < (1 << B); mask++) {
-
             int[] applied = new int[n];
             int used = Integer.bitCount(mask);
 
@@ -94,11 +90,7 @@ public class Solver {
             for (int i = 0; i < B; i++) {
                 if ((mask & (1 << i)) != 0) {
                     int b = buttons[i];
-                    for (int j = 0; j < n; j++) {
-                        if (((b >> j) & 1) == 1) {
-                            applied[j]++;
-                        }
-                    }
+                    for (int j = 0; j < n; j++) if (((b >> j) & 1) == 1) applied[j]++;
                 }
             }
 
@@ -116,15 +108,10 @@ public class Solver {
             if (!valid) continue;
 
             int[] reduced = new int[n];
-            for (int j = 0; j < n; j++) {
-                reduced[j] = (cur[j] - applied[j]) / 2;
-            }
+            for (int j = 0; j < n; j++) reduced[j] = (cur[j] - applied[j]) / 2;
 
             long sub = dfs(buttons, target, reduced, memo);
-
-            if (sub != Long.MAX_VALUE) {
-                best = Math.min(best, used + 2L * sub);
-            }
+            if (sub != Long.MAX_VALUE) best = Math.min(best, used + 2L * sub);
         }
 
         memo.put(key, best);
