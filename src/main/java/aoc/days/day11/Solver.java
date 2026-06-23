@@ -1,6 +1,6 @@
 package aoc.days.day11;
 
-import aoc.tasks.TXTFileReader;
+import aoc.io.TXTFileReader;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,6 +1,6 @@
 package aoc.days.day02;
 
-import aoc.tasks.TXTFileReader;
+import aoc.io.TXTFileReader;
 
 import java.util.List;
 

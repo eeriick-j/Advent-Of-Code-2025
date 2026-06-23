@@ -1,4 +1,4 @@
-package aoc.tasks;
+package aoc.io;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;

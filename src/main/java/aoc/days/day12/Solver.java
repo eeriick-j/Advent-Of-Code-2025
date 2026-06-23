@@ -1,7 +1,7 @@
 package aoc.days.day12;
 
 import aoc.days.day12.model.*;
-import aoc.tasks.TXTFileReader;
+import aoc.io.TXTFileReader;
 
 import java.util.*;
 

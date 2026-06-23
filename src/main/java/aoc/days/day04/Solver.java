@@ -1,6 +1,6 @@
 package aoc.days.day04;
 
-import aoc.tasks.TXTFileReader;
+import aoc.io.TXTFileReader;
 
 public class Solver {
     public static void main(String[] args) {

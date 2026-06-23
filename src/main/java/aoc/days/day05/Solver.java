@@ -1,7 +1,7 @@
 package aoc.days.day05;
 
 import aoc.days.day02.IDRange;
-import aoc.tasks.TXTFileReader;
+import aoc.io.TXTFileReader;
 
 import java.util.*;
 
