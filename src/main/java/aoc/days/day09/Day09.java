@@ -1,5 +1,6 @@
 package aoc.days.day09;
 
+import aoc.DayRegistry;
 import aoc.core.DaySolver;
 import aoc.days.day09.model.Point;
 import aoc.days.day09.model.Segment;
@@ -11,6 +12,14 @@ public class Day09 implements DaySolver {
 
     public Day09(List<Point> points) {
         this.points = points;
+    }
+
+    public static DaySolver build(String input) {
+        return new Day09(new Day09Parser().parse(input));
+    }
+
+    static {
+        DayRegistry.register(9, Day09::build);
     }
 
     @Override

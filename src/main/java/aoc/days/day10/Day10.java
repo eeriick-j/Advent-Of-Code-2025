@@ -1,6 +1,9 @@
 package aoc.days.day10;
 
+import aoc.DayRegistry;
 import aoc.core.DaySolver;
+import aoc.days.day04.Day04;
+import aoc.days.day04.Day04Parser;
 import aoc.days.day10.model.Machine;
 
 import java.util.*;
@@ -10,6 +13,14 @@ public class Day10 implements DaySolver {
 
     public Day10(List<Machine> machines) {
         this.machines = machines;
+    }
+
+    public static DaySolver build(String input) {
+        return new Day10(new Day10Parser().parse(input));
+    }
+
+    static {
+        DayRegistry.register(10, Day10::build);
     }
 
     @Override
