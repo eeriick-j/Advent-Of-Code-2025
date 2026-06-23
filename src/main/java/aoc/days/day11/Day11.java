@@ -1,5 +1,6 @@
 package aoc.days.day11;
 
+import aoc.DayRegistry;
 import aoc.core.DaySolver;
 import aoc.days.day11.model.Graph;
 
@@ -11,6 +12,14 @@ public class Day11 implements DaySolver {
 
     public Day11(Graph graph) {
         this.graph = graph;
+    }
+
+    public static DaySolver build(String input) {
+        return new Day11(new Day11Parser().parse(input));
+    }
+
+    static {
+        DayRegistry.register(11, Day11::build);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package aoc.days.day12;
 
+import aoc.DayRegistry;
 import aoc.core.DaySolver;
 import aoc.days.day12.model.*;
 
@@ -10,6 +11,14 @@ public class Day12 implements DaySolver {
 
     public Day12(Puzzle puzzle) {
         this.puzzle = puzzle;
+    }
+
+    public static DaySolver build(String input) {
+        return new Day12(new Day12Parser().parse(input));
+    }
+
+    static {
+        DayRegistry.register(12, Day12::build);
     }
 
     @Override
