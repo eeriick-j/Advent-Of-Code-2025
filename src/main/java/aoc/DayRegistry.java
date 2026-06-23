@@ -4,18 +4,16 @@ import aoc.core.DaySolver;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 public class DayRegistry {
-    private static final Map<Integer, Supplier<DaySolver>> DAYS = new HashMap<>();
+    private static final Map<Integer, Function<String, DaySolver>> DAYS = new HashMap<>();
 
-    public static void register(int day, Supplier<DaySolver> supplier) {
-        DAYS.put(day, supplier);
+    public static void register(int day, Function<String, DaySolver> factory) {
+        DAYS.put(day, factory);
     }
 
-    public static DaySolver get(int day) {
-        Supplier<DaySolver> supplier = DAYS.get(day);
-        if (supplier == null) throw new IllegalArgumentException("Day not registered: " + day);
-        return supplier.get();
+    public static DaySolver create(int day, String input) {
+        return DAYS.get(day).apply(input);
     }
 }
