@@ -45,7 +45,7 @@ public class Day09 implements DaySolver {
     public Long solvePart2() {
         ///  Área máxima entre el rectángulo que forman dos puntos cualesquiera q
         ///  que estén dentro del polígono que forman todos los puntos
-        Polygon polygon = new Polygon(points, buildSegments(points));
+        Polygon polygon = new Polygon(buildSegments(points));
 
         long maxArea = 0;
         for (int i = 0; i < points.size(); i++) {

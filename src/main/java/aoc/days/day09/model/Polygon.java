@@ -3,11 +3,9 @@ package aoc.days.day09.model;
 import java.util.List;
 
 public class Polygon {
-    private final List<Point> points;
     private final List<Segment> segments;
 
-    public Polygon(List<Point> points, List<Segment> segments) {
-        this.points = points;
+    public Polygon(List<Segment> segments) {
         this.segments = segments;
     }
 
