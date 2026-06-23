@@ -1,19 +1,21 @@
 package aoc.days.day09;
 
+import aoc.core.DaySolver;
 import aoc.days.day09.model.Point;
 import aoc.days.day09.model.Segment;
 import aoc.io.TXTFileReader;
 
 import java.util.*;
 
-public class Solver {
-    public static void main(String[] args) {
-        List<Point> points = InputParser.parse(new TXTFileReader().read("inputs/day09.txt"));
-        System.out.println("Part 1: " + solvePart1(points));
-        System.out.println("Part 2: " + solvePart2(points));
+public class Day09 implements DaySolver {
+    private final List<Point> points;
+
+    public Day09(List<Point> points) {
+        this.points = points;
     }
 
-    public static long solvePart1(List<Point> points) {
+    @Override
+    public Long solvePart1() {
         ///  Área máxima entre el rectángulo que forman dos puntos cualesquiera
         long maxArea = 0;
         for(int i=0; i<points.size(); i++) {
@@ -24,13 +26,14 @@ public class Solver {
         return maxArea;
     }
 
-    private static long area(Point a, Point b) {
+    private long area(Point a, Point b) {
         long dx = Math.abs(a.x() - b.x() + 1);
         long dy = Math.abs(a.y() - b.y() + 1);
         return dx * dy;
     }
 
-    public static long solvePart2(List<Point> points) {
+    @Override
+    public Long solvePart2() {
         ///  Área máxima entre el rectángulo que forman dos puntos cualesquiera q
         ///  que estén dentro del polígono que forman todos los puntos
         List<Segment> segments = buildSegments(points);
@@ -51,7 +54,7 @@ public class Solver {
         return maxArea;
     }
 
-    static List<Segment> buildSegments(List<Point> pts) {
+    private List<Segment> buildSegments(List<Point> pts) {
         List<Segment> segments = new ArrayList<>();
 
         for (int i = 0; i < pts.size(); i++) {
@@ -63,7 +66,7 @@ public class Solver {
         return segments;
     }
 
-    static boolean isValidRectangle(Point a, Point b, List<Segment> segs) {
+    private boolean isValidRectangle(Point a, Point b, List<Segment> segs) {
         long x1 = Math.min(a.x(), b.x());
         long x2 = Math.max(a.x(), b.x());
         long y1 = Math.min(a.y(), b.y());
@@ -76,7 +79,7 @@ public class Solver {
                 && isInside(x2,y2,segs)))
             return false;
 
-        // ningún segmento de la frontera puede atravesar el interior
+        // Ningún segmento de la frontera puede atravesar el interior
         for (Segment s : segs) {
             long sx1 = s.x1(), sy1 = s.y1();
             long sx2 = s.x2(), sy2 = s.y2();
@@ -97,7 +100,7 @@ public class Solver {
         return true;
     }
 
-    private static boolean isInside(long x, long y, List<Segment> segs) {
+    private boolean isInside(long x, long y, List<Segment> segs) {
         for (Segment s : segs) if (onSegment(x,y,s)) return true;
         int crossings = 0;
         for (Segment s : segs) {
@@ -110,7 +113,7 @@ public class Solver {
         return (crossings & 1) == 1;
     }
 
-    private static boolean onSegment(long x, long y, Segment s) {
+    private boolean onSegment(long x, long y, Segment s) {
         long x1 = s.x1();
         long y1 = s.y1();
         long x2 = s.x2();
