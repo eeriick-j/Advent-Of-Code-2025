@@ -1,5 +1,6 @@
 package aoc.days.day12;
 
+import aoc.core.InputParser;
 import aoc.days.day12.model.Cell;
 import aoc.days.day12.model.Piece;
 import aoc.days.day12.model.Puzzle;
@@ -9,8 +10,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class InputParser {
-    public static Puzzle parse(String rawInput) {
+public class Day12Parser implements InputParser<Puzzle> {
+    @Override
+    public Puzzle parse(String rawInput) {
         String[] lines = rawInput.split("\\R");
         List<Piece> pieces = new ArrayList<>();
         List<Region> regions = new ArrayList<>();

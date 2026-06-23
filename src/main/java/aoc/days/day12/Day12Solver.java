@@ -5,10 +5,10 @@ import aoc.days.day12.model.*;
 
 import java.util.*;
 
-public class Day12 implements DaySolver {
+public class Day12Solver implements DaySolver {
     private final Puzzle puzzle;
 
-    public Day12(Puzzle puzzle) {
+    public Day12Solver(Puzzle puzzle) {
         this.puzzle = puzzle;
     }
 
