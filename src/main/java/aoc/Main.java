@@ -1,17 +1,17 @@
 package aoc;
 
-import aoc.days.day09.Day09;
-import aoc.days.day09.InputParser;
-import aoc.days.day09.model.Point;
+import aoc.days.day10.Day10;
+import aoc.days.day10.InputParser;
+import aoc.days.day10.model.Machine;
 import aoc.io.TXTFileReader;
 
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<Point> points = InputParser.parse(new TXTFileReader().read("inputs/day09.txt"));
-        Day09 day09 = new Day09(points);
-        System.out.println("First part: " + day09.solvePart1());
-        System.out.println("Second part: " + day09.solvePart2());
+        List<Machine> machines = InputParser.parse(new TXTFileReader().read("inputs/day10.txt"));
+        Day10 day10 = new Day10(machines);
+        System.out.println("First part: " + day10.solvePart1());
+        System.out.println("Second part: " + day10.solvePart2());
     }
 }
