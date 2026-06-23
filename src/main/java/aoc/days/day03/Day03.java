@@ -1,20 +1,22 @@
 package aoc.days.day03;
 
-import aoc.io.TXTFileReader;
+import aoc.core.DaySolver;
+import aoc.days.day03.model.Bank;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-public class Solver {
-    public static void main(String[] args) {
-        List<Bank> banks = InputParser.parse(new TXTFileReader().read("inputs/day03.txt"));
-        System.out.println("Part 1: " + solvePart1(banks));
-        System.out.println("Part 2: " + solvePart2(banks));
+public class Day03 implements DaySolver {
+    private final List<Bank> banks;
+
+    public Day03(List<Bank> banks) {
+        this.banks = banks;
     }
 
-    public static long solvePart1(List<Bank> banks) {
+    @Override
+    public Long solvePart1() {
         /// Sumas de las mayores parejas de 2 dígitos (concatenados) para cada banco
         long sumVoltages = 0;
         for (Bank bank : banks) {
@@ -24,8 +26,8 @@ public class Solver {
         return sumVoltages;
     }
 
-
-    public static long solvePart2(List<Bank> banks) {
+    @Override
+    public Long solvePart2() {
         long sumVoltages = 0;
         for (Bank bank : banks) {
             List<Integer> best12 = maxSubsequence(bank.voltages(), 12);

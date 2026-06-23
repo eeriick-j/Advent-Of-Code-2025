@@ -1,5 +1,7 @@
 package aoc.days.day03;
 
+import aoc.days.day03.model.Bank;
+
 import java.util.List;
 
 public class InputParser {

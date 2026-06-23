@@ -1,4 +1,4 @@
-package aoc.days.day03;
+package aoc.days.day03.model;
 
 import java.util.List;
 
