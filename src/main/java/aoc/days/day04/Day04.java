@@ -1,5 +1,6 @@
 package aoc.days.day04;
 
+import aoc.DayRegistry;
 import aoc.core.DaySolver;
 
 public class Day04 implements DaySolver {
@@ -7,6 +8,14 @@ public class Day04 implements DaySolver {
 
     public Day04(char[][] rollsOfPapers) {
         this.rollsOfPapers = rollsOfPapers;
+    }
+
+    public static DaySolver build(String input) {
+        return new Day04(new Day04Parser().parse(input));
+    }
+
+    static {
+        DayRegistry.register(4, Day04::build);
     }
 
     @Override
