@@ -1,5 +1,6 @@
 package aoc.days.day01;
 
+import aoc.DayRegistry;
 import aoc.core.DaySolver;
 import aoc.days.day01.model.Rotation;
 
@@ -10,6 +11,14 @@ public class Day01 implements DaySolver {
 
     public Day01(List<Rotation> rotations) {
         this.rotations = rotations;
+    }
+
+    public static DaySolver build(String input) {
+        return new Day01(new Day01Parser().parse(input));
+    }
+
+    static {
+        DayRegistry.register(1, Day01::build);
     }
 
     @Override
