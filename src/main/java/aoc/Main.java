@@ -1,15 +1,23 @@
 package aoc;
 
-import aoc.days.day12.Day12;
-import aoc.days.day12.InputParser;
-import aoc.days.day12.model.Puzzle;
+
+import aoc.core.InputParser;
+import aoc.days.day01.Day01;
+import aoc.days.day01.Day01Parser;
+import aoc.days.day01.model.Rotation;
+import aoc.io.FileReader;
 import aoc.io.TXTFileReader;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Puzzle puzzle = InputParser.parse(new TXTFileReader().read("inputs/day12.txt"));
-        Day12 day12 = new Day12(puzzle);
-        System.out.println("First part: " + day12.solvePart1());
-        System.out.println("Second part: " + day12.solvePart2());
+        InputParser<List<Rotation>> parser = new Day01Parser();
+        FileReader reader = new TXTFileReader();
+
+        List<Rotation> rotations = parser.parse(reader.read("inputs/day01.txt"));
+        Day01 day01 = new Day01(rotations);
+        System.out.println("First part: " + day01.solvePart1());
+        System.out.println("Second part: " + day01.solvePart2());
     }
 }
