@@ -1,15 +1,16 @@
 package aoc;
 
-import aoc.days.day05.Day05;
-import aoc.days.day05.InputParser;
-import aoc.days.day05.model.Pair;
+import aoc.days.day06.Day06;
+import aoc.days.day06.InputParser;
 import aoc.io.TXTFileReader;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Pair pair = InputParser.parse(new TXTFileReader().read("inputs/day05.txt"));
-        Day05 day05 = new Day05(pair);
-        System.out.println("First part: " + day05.solvePart1());
-        System.out.println("Second part: " + day05.solvePart2());
+        List<String> grid = InputParser.parse(new TXTFileReader().read("inputs/day06.txt"));
+        Day06 day06 = new Day06(grid);
+        System.out.println("First part: " + day06.solvePart1());
+        System.out.println("Second part: " + day06.solvePart2());
     }
 }

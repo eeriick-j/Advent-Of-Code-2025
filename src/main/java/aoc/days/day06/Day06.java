@@ -1,18 +1,18 @@
 package aoc.days.day06;
 
-import aoc.io.TXTFileReader;
+import aoc.core.DaySolver;
 
 import java.util.List;
 
-public class Solver {
+public class Day06 implements DaySolver {
+    private final List<String> grid;
 
-    public static void main(String[] args) {
-        List<String> grid = InputParser.parse(new TXTFileReader().read("inputs/day06.txt"));
-        System.out.println("First part: " + solvePart1(grid));
-        System.out.println("Second part: " + solvePart2(grid));
+    public Day06(List<String> grid) {
+        this.grid = grid;
     }
 
-    public static long solvePart1(List<String> grid) {
+    @Override
+    public Long solvePart1() {
         long sum = 0;
         int rows = grid.size();
         int cols = grid.stream().mapToInt(String::length).max().orElse(0);
@@ -28,24 +28,11 @@ public class Solver {
             // Encontrar límites del bloque
             int start = col;
             int end = col;
-            while (end + 1 < cols && !isSeparatorColumn(grid, end + 1)) {
-                end++;
-            }
+            while (end + 1 < cols && !isSeparatorColumn(grid, end + 1)) end++;
 
             // Buscar operador
-            char op = ' ';
-            String lastRow = grid.get(rows - 1);
-
-            for (int c = start; c <= end; c++) {
-                char ch = c < lastRow.length() ? lastRow.charAt(c) : ' ';
-                if (ch == '+' || ch == '*') {
-                    op = ch;
-                    break;
-                }
-            }
-
+            char op = findOperator(rows, start, end);
             if (op != ' ') {
-
                 Long result = null;
 
                 // Leer números por FILAS
@@ -56,13 +43,11 @@ public class Solver {
 
                     for (int c = start; c <= end; c++) {
                         char ch = c < s.length() ? s.charAt(c) : ' ';
-
                         if (Character.isDigit(ch)) {
                             value = value * 10 + (ch - '0');
                             hasDigit = true;
                         }
                     }
-
                     if (hasDigit) {
                         if (result == null) result = value;
                         else if (op == '+') result += value;
@@ -76,7 +61,7 @@ public class Solver {
         return sum;
     }
 
-    private static boolean isSeparatorColumn(List<String> grid, int col) {
+    private boolean isSeparatorColumn(List<String> grid, int col) {
         for (String row : grid) {
             char ch = col < row.length() ? row.charAt(col) : ' ';
             if (ch != ' ') return false;
@@ -84,7 +69,18 @@ public class Solver {
         return true;
     }
 
-    public static long solvePart2(List<String> grid) {
+    private char findOperator(int rows, int start, int end) {
+        char op = ' ';
+        String lastRow = grid.get(rows - 1);
+        for (int c = start; c <= end; c++) {
+            char ch = c < lastRow.length() ? lastRow.charAt(c) : ' ';
+            if (ch == '+' || ch == '*') return ch;
+        }
+        return op;
+    }
+
+    @Override
+    public Long solvePart2() {
         long sum = 0;
         int rows = grid.size();
         int cols = grid.stream().mapToInt(String::length).max().orElse(0);
@@ -100,17 +96,7 @@ public class Solver {
             int end = col;
             while (end + 1 < cols && !isSeparatorColumn(grid, end + 1)) end++;
 
-            char op = ' ';
-            String lastRow = grid.get(rows - 1);
-
-            for (int c = start; c <= end; c++) {
-                char ch = c < lastRow.length() ? lastRow.charAt(c) : ' ';
-                if (ch == '+' || ch == '*') {
-                    op = ch;
-                    break;
-                }
-            }
-
+            char op = findOperator(rows, start, end);
             if (op != ' ') {
                 Long result = null;
 
