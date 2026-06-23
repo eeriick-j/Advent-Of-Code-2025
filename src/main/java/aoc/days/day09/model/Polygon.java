@@ -1,6 +1,5 @@
 package aoc.days.day09.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Polygon {
@@ -10,18 +9,6 @@ public class Polygon {
     public Polygon(List<Point> points, List<Segment> segments) {
         this.points = points;
         this.segments = segments;
-    }
-
-    private List<Segment> buildSegments(List<Point> pts) {
-        List<Segment> segments = new ArrayList<>();
-
-        for (int i = 0; i < pts.size(); i++) {
-            Point a = pts.get(i);
-            Point b = pts.get((i + 1) % pts.size());
-            segments.add(new Segment(a, b));
-        }
-
-        return segments;
     }
 
     public boolean containsRectangle(Point a, Point b) {
