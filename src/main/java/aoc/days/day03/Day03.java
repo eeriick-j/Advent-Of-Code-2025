@@ -1,5 +1,6 @@
 package aoc.days.day03;
 
+import aoc.DayRegistry;
 import aoc.core.DaySolver;
 import aoc.days.day03.model.Bank;
 
@@ -13,6 +14,14 @@ public class Day03 implements DaySolver {
 
     public Day03(List<Bank> banks) {
         this.banks = banks;
+    }
+
+    public static DaySolver build(String input) {
+        return new Day03(new Day03Parser().parse(input));
+    }
+
+    static {
+        DayRegistry.register(3, Day03::build);
     }
 
     @Override

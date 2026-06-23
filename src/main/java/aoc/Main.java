@@ -2,6 +2,6 @@ package aoc;
 
 public class Main {
     public static void main(String[] args) {
-        DayRunner.run(2);
+        DayRunner.run(3);
     }
 }
