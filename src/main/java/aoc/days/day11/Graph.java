@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Graph {
-    private Map<String, List<String>> adjacencyList;
+    private final Map<String, List<String>> adjacencyList;
 
     public Graph() {
         this.adjacencyList = new HashMap<>();
@@ -18,9 +18,5 @@ public class Graph {
 
     public List<String> neighbors(String node) {
         return adjacencyList.getOrDefault(node, List.of());
-    }
-
-    public Map<String, List<String>> getAdjacencyList() {
-        return adjacencyList;
     }
 }

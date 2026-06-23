@@ -1,7 +1,6 @@
 package aoc.days.day11;
 
 public class InputParser {
-
     public static Graph parse(String rawInput) {
         Graph graph = new Graph();
         String[] lines = rawInput.split("\\n");
@@ -13,9 +12,9 @@ public class InputParser {
             String[] parts = line.split(":");
             String from = parts[0].trim();
             String[] tos = parts[1].trim().split("\\s+");
-
             for (String to : tos) graph.addEdge(from, to);
         }
+
         return graph;
     }
 }
