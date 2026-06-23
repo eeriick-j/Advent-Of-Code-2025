@@ -1,5 +1,6 @@
 package aoc.days.day08;
 
+import aoc.DayRegistry;
 import aoc.core.DaySolver;
 import aoc.days.day08.model.Box;
 import aoc.days.day08.model.Pair;
@@ -11,6 +12,14 @@ public class Day08 implements DaySolver {
 
     public Day08(List<Box> boxes) {
         this.boxes = boxes;
+    }
+
+    public static DaySolver build(String input) {
+        return new Day08(new Day08Parser().parse(input));
+    }
+
+    static {
+        DayRegistry.register(8, Day08::build);
     }
 
     @Override

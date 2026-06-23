@@ -1,6 +1,9 @@
 package aoc.days.day07;
 
+import aoc.DayRegistry;
 import aoc.core.DaySolver;
+import aoc.days.day04.Day04;
+import aoc.days.day04.Day04Parser;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,6 +13,14 @@ public class Day07 implements DaySolver {
 
     public Day07(char[][] grid) {
         this.grid = grid;
+    }
+
+    public static DaySolver build(String input) {
+        return new Day07(new Day07Parser().parse(input));
+    }
+
+    static {
+        DayRegistry.register(7, Day07::build);
     }
 
     @Override
