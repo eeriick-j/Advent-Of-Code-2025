@@ -57,5 +57,4 @@ public class Day03 implements DaySolver {
         for (int d : digits) result = result * 10 + d;
         return result;
     }
-
 }
