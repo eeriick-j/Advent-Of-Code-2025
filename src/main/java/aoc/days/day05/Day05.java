@@ -1,5 +1,6 @@
 package aoc.days.day05;
 
+import aoc.DayRegistry;
 import aoc.core.DaySolver;
 import aoc.days.day05.model.IDRange;
 import aoc.days.day05.model.Pair;
@@ -11,6 +12,14 @@ public class Day05 implements DaySolver {
 
     public Day05(Pair pair) {
         this.pair = pair;
+    }
+
+    public static DaySolver build(String input) {
+        return new Day05(new Day05Parser().parse(input));
+    }
+
+    static {
+        DayRegistry.register(5, Day05::build);
     }
 
     @Override
