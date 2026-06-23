@@ -4,10 +4,10 @@ import aoc.core.DaySolver;
 
 import java.util.List;
 
-public class Day06 implements DaySolver {
+public class Day06Solver implements DaySolver {
     private final List<String> grid;
 
-    public Day06(List<String> grid) {
+    public Day06Solver(List<String> grid) {
         this.grid = grid;
     }
 
