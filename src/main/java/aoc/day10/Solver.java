@@ -52,64 +52,82 @@ public class Solver {
 
     public static long solvePart2(List<Machine> machines) {
         long total = 0;
-        for (Machine m : machines) total += solveMachinePart2(m);
+        for (Machine m : machines) {
+            total += solveMachinePart2(m);
+        }
         return total;
     }
 
-    private static int solveMachinePart2(Machine m) {
-        int[][] buttons = expandButtons(m.buttons());
+    private static long solveMachinePart2(Machine m) {
+        int[] buttons = m.buttons();
         int[] target = m.voltages();
-        return bfsStateSpace(target, buttons);
+
+        Map<String, Long> memo = new HashMap<>();
+        return dfs(buttons, target, target, memo);
     }
 
-    // BFS en espacio de estados completo
-    private static int bfsStateSpace(int[] target, int[][] buttons) {
-        Queue<int[]> q = new ArrayDeque<>();
-        Set<String> visited = new HashSet<>();
-        int[] start = new int[target.length];
+    private static long dfs(int[] buttons, int[] target, int[] cur, Map<String, Long> memo) {
+        String key = Arrays.toString(cur);
+        if (memo.containsKey(key)) return memo.get(key);
 
-        q.add(start);
-        visited.add(encode(start));
-        int steps = 0;
-        while (!q.isEmpty()) {
-            int size = q.size();
-            for (int i = 0; i < size; i++) {
-                int[] state = q.poll();
-                if (Arrays.equals(state, target)) return steps;
-                for (int[] b : buttons) {
-                    int[] next = state.clone();
-                    apply(next, b);
-                    String key = encode(next);
-                    if (visited.add(key)) q.add(next);
+        boolean allZero = true;
+        for (int v : cur) {
+            if (v != 0) {
+                allZero = false;
+                break;
+            }
+        }
+        if (allZero) return 0;
+
+        int n = cur.length;
+        int B = buttons.length;
+
+        long best = Long.MAX_VALUE;
+
+        // todos los subconjuntos de botones (Phase 1)
+        for (int mask = 0; mask < (1 << B); mask++) {
+
+            int[] applied = new int[n];
+            int used = Integer.bitCount(mask);
+
+            // aplicar subset
+            for (int i = 0; i < B; i++) {
+                if ((mask & (1 << i)) != 0) {
+                    int b = buttons[i];
+                    for (int j = 0; j < n; j++) {
+                        if (((b >> j) & 1) == 1) {
+                            applied[j]++;
+                        }
+                    }
                 }
             }
-            steps++;
-        }
-        return -1;
-    }
 
-    private static void apply(int[] state, int[] mask) {
-        for (int i : mask) state[i]++;
-    }
+            boolean valid = true;
 
-    private static String encode(int[] state) {
-        return Arrays.toString(state);
-    }
-
-    // bitmask -> índices
-    private static int[][] expandButtons(int[] buttons) {
-        int[][] res = new int[buttons.length][];
-        for (int i = 0; i < buttons.length; i++) {
-            int mask = buttons[i];
-            List<Integer> idx = new ArrayList<>();
-            int bit = 0;
-            while (mask != 0) {
-                if ((mask & 1) == 1) idx.add(bit);
-                mask >>= 1;
-                bit++;
+            // comprobar paridad y no negativos
+            for (int j = 0; j < n; j++) {
+                int diff = cur[j] - applied[j];
+                if (diff < 0 || (diff & 1) != 0) {
+                    valid = false;
+                    break;
+                }
             }
-            res[i] = idx.stream().mapToInt(x -> x).toArray();
+
+            if (!valid) continue;
+
+            int[] reduced = new int[n];
+            for (int j = 0; j < n; j++) {
+                reduced[j] = (cur[j] - applied[j]) / 2;
+            }
+
+            long sub = dfs(buttons, target, reduced, memo);
+
+            if (sub != Long.MAX_VALUE) {
+                best = Math.min(best, used + 2L * sub);
+            }
         }
-        return res;
+
+        memo.put(key, best);
+        return best;
     }
 }
