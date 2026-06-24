@@ -235,21 +235,19 @@ sin afectar al resto del sistema.
 
 ---
 
-# Factory Method
+## Factory Method
 
-## Problema
+### Problema
 
 La creación de cada solución no debería depender del cliente.
 
-## Solución
+### Solución
 
 Cada día proporciona un método de construcción:
 
 ```java
 public static DaySolver build(String input) {
-    return new Day01(
-            new Day01Parser().parse(input)
-    );
+    return new Day01(new Day01Parser().parse(input));
 }
 ```
 
@@ -269,18 +267,16 @@ sin conocer qué clase concreta se instancia.
 
 ---
 
-# Registry Pattern
+## Registry Pattern
 
-## Problema
+### Problema
 
 Es necesario disponer de una forma de localizar dinámicamente las soluciones disponibles.
 
-## Implementación
+### Implementación
 
 ```java
-private static final Map<Integer,
-        Function<String, DaySolver>> DAYS
-        = new HashMap<>();
+private static final Map<Integer, Function<String, DaySolver>> DAYS = new HashMap<>();
 ```
 
 Registro:
@@ -303,23 +299,20 @@ DayRegistry.create(day,input);
 
 ---
 
-# Strategy Pattern
+## Strategy Pattern
 
-## Problema
+### Problema
 
 Cada día implementa un algoritmo completamente diferente.
 
-## Solución
+### Solución
 
 Todos los algoritmos implementan:
 
 ```java
 public interface DaySolver {
-
     Object solvePart1();
-
     Object solvePart2();
-
 }
 ```
 
@@ -330,7 +323,7 @@ Day01
 Day02
 Day03
 ...
-Day25
+Day12
 ```
 
 Cada una representa una estrategia distinta.
@@ -354,18 +347,16 @@ El código cliente es independiente del algoritmo concreto.
 
 ---
 
-# Composition over Inheritance
+## Composition over Inheritance
 
-## Idea
+### Idea
 
 Se favorece la composición frente a las jerarquías complejas de herencia.
 
 ### Ejemplo
 
 ```java
-new Day01(
-        new Day01Parser().parse(input)
-);
+new Day01(new Day01Parser().parse(input));
 ```
 
 La clase utiliza otros objetos en lugar de extender una jerarquía profunda.
@@ -459,17 +450,19 @@ Toda la lógica asociada al problema permanece localizada en un único módulo.
 Añadir un nuevo problema requiere únicamente:
 
 ```text
-day26
+day13
 │
-├── Day26
-├── Day26Parser
+├── Day13
+├── Day13Parser
 └── model
 ```
 
 y registrarlo:
 
 ```java
-DayRegistry.register(26, Day26::build);
+static{
+    DayRegistry.register(26, Day26::build);
+}
 ```
 
 No es necesario modificar el resto del sistema.
