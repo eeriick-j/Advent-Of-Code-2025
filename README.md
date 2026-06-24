@@ -329,7 +329,7 @@ Además de SOLID y patrones de diseño, el proyecto sigue una serie de principio
 
 ---
 
-### 🔹 Separation of Concerns (SoC)
+### 🔹 🧩 Separation of Concerns (SoC)
 
 Cada componente tiene una responsabilidad bien definida:
 
@@ -342,7 +342,7 @@ Cada componente tiene una responsabilidad bien definida:
 
 ---
 
-### Composition over Inheritance
+### 🔹 🔄 Composition over Inheritance
 
 #### Idea
 
@@ -364,7 +364,7 @@ La clase utiliza otros objetos en lugar de extender una jerarquía profunda.
 
 ---
 
-### 🧩 Programación orientada a interfaces
+### 🔹 📌 Programación orientada a interfaces
 
 Las principales dependencias se expresan mediante interfaces:
 
@@ -392,7 +392,7 @@ sin modificar ningún cliente.
 
 ---
 
-### 🔒 Encapsulación
+### 🔹 🔒 Encapsulación
 
 Las estructuras internas permanecen ocultas:
 
@@ -410,7 +410,7 @@ La interacción se realiza únicamente mediante métodos públicos.
 
 ---
 
-### 🔗 Bajo acoplamiento
+### 🔹 🔗 Bajo acoplamiento
 
 Los distintos días son independientes entre sí.
 
@@ -424,7 +424,7 @@ Ninguna solución conoce las implementaciones de las demás.
 
 ---
 
-### 📌 Alta cohesión
+### 🔹 🧱 Alta cohesión
 
 Cada paquete agrupa componentes relacionados:
 
@@ -440,7 +440,7 @@ Toda la lógica asociada al problema permanece localizada en un único módulo.
 
 ---
 
-### 🚀 Escalabilidad
+### 🔹 🚀 Escalabilidad
 
 Añadir un nuevo problema requiere únicamente:
 
@@ -455,7 +455,7 @@ day13
 y registrarlo:
 
 ```java
-static{
+static {
     DayRegistry.register(26, Day26::build);
 }
 ```
