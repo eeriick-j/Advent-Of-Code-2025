@@ -85,7 +85,7 @@ La aplicación es capaz de seleccionar dinámicamente la implementación adecuad
 
 ## 📐 Principios SOLID aplicados
 
-### Single Responsibility Principle (SRP)
+### 🔹 Single Responsibility Principle (SRP)
 
 > Una clase debe tener una única razón para cambiar.
 
@@ -131,7 +131,7 @@ public interface DaySolver {
 
 ---
 
-### Open/Closed Principle (OCP)
+### 🔹 Open/Closed Principle (OCP)
 
 > El software debe estar abierto a extensión y cerrado a modificación.
 
@@ -171,7 +171,7 @@ DaySolver solver = DayRegistry.create(day, input);
 
 ---
 
-### Dependency Inversion Principle (DIP)
+### 🔹 Dependency Inversion Principle (DIP)
 
 > Los módulos deben depender de abstracciones y no de implementaciones concretas.
 
@@ -211,7 +211,7 @@ sin afectar al resto del sistema.
 
 ## 🎨 Patrones de diseño utilizados
 
-### Factory Method
+### 🔹 🏭 Factory Method
 
 #### Problema
 
@@ -243,7 +243,7 @@ sin conocer qué clase concreta se instancia.
 
 ---
 
-### Registry Pattern
+### 🔹 🗂️ Registry Pattern
 
 #### Problema
 
@@ -275,7 +275,7 @@ DayRegistry.create(day,input);
 
 ---
 
-### Strategy Pattern
+### 🔹 🎯 Strategy Pattern
 
 #### Problema
 
