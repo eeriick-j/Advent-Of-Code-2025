@@ -29,7 +29,7 @@ La estructura del proyecto se organiza por días, manteniendo una arquitectura h
 │
 ├── /core
 │     ├── DaySolver
-│     └── Inputparser
+│     └── InputParser
 │
 ├── /days
 │     │
@@ -42,8 +42,8 @@ La estructura del proyecto se organiza por días, manteniendo una arquitectura h
 │     ├── /day02
 │     │      ├── /model
 │     │             ├── ...
-│     │      ├── Day01
-│     │      └── Day01Parser
+│     │      ├── Day02
+│     │      └── Day02Parser
 │     │
 │     ├── ...
 │
@@ -57,19 +57,6 @@ Cada módulo contiene exclusivamente la lógica correspondiente a su problema, e
 
 ---
 
-## 🎯 Objetivos del diseño
-
-La arquitectura persigue los siguientes objetivos:
-
-- Facilitar el mantenimiento.
-- Minimizar el acoplamiento entre componentes.
-- Favorecer la reutilización.
-- Permitir la incorporación de nuevos problemas sin modificar código existente.
-- Conseguir una estructura escalable.
-- Facilitar la legibilidad y comprensión del código.
-
----
-
 ## ⚙ Flujo de ejecución
 
 El proceso general de ejecución sigue las siguientes etapas:
@@ -77,27 +64,19 @@ El proceso general de ejecución sigue las siguientes etapas:
 
 ```mermaid
 flowchart LR
-    A["Main"] --> B["DayRunner"]
 
-    B --> C["FileReader"]
-    C --> D["Raw Input"]
+subgraph Runtime
+direction LR
 
-    D --> E["DayRegistry"]
-    E --> F["Factory Method<br/>DayXX.build()"]
+C["Main"] --> D["DayRunner.run(day)"]
+D -->|Read input| F["DayRegistry.create(day)"]
+F --> G["DayXX::build"]
+G --> H["DaySolver"]
 
-    F --> G["DayXXParser"]
-    G --> H["DaySolver"]
+H --> I["Part 1"]
+H --> J["Part 2"]
 
-    H --> I["Part 1"]
-    H --> J["Part 2"]
-
-    classDef core fill:#dae8fc,stroke:#6c8ebf;
-    classDef factory fill:#fff2cc,stroke:#d6b656;
-    classDef solver fill:#d5e8d4,stroke:#82b366;
-
-    class A,B,C,D,E core;
-    class F factory;
-    class G,H,I,J solver;
+end
 ```
 
 La aplicación es capaz de seleccionar dinámicamente la implementación adecuada según el día solicitado.
@@ -488,7 +467,7 @@ No es necesario modificar el resto del sistema.
 
 ## 📊 Calidad del software
 
-La arquitectura persigue los atributos de calidad definidos en Ingeniería del Software:
+La arquitectura logra los atributos de calidad definidos en Ingeniería del Software:
 
 | Atributo | Aplicación |
 |-----------|------------|
@@ -500,18 +479,6 @@ La arquitectura persigue los atributos de calidad definidos en Ingeniería del S
 | Bajo acoplamiento | Componentes independientes |
 | Legibilidad | Estructura homogénea |
 | Robustez | Encapsulación y separación de responsabilidades |
-
----
-
-## 💻 Tecnologías
-
-- Java
-- Programación Orientada a Objetos
-- SOLID
-- Patrones de Diseño
-- Colecciones Java
-- Expresiones Lambda
-- Functional Interfaces
 
 ---
 
