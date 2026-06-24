@@ -55,7 +55,7 @@ apunta a 0, para incrementar un contador, que será el retorno tras acabar el bu
 ## 🔷 Parte 2
 
 Objetivo: obtener el nº de veces que el dial apunta a 0, tras cada paso de cada rotación.
-
+ 
 Se parte de:
 - `List<Rotation>`
 - `Dial` con puntero inicializado a 50.
