@@ -99,7 +99,8 @@ Las responsabilidades se encuentran claramente separadas:
 | InputParser | Modelar la entrada |
 | DaySolver | Resolver el problema |
 | DayRegistry | Registro de soluciones |
-| DayXX | Solver  |
+| DayXX | Implementación concreta del Solver  |
+| DayXXParser | Implementación concreta del parser  |
 
 #### Ejemplo
 
@@ -124,11 +125,9 @@ public interface DaySolver {
 
 #### Beneficios
 
-✅ Mayor mantenibilidad.
-
-✅ Clases pequeñas y comprensibles.
-
-✅ Menor propagación de cambios.
+- Mayor mantenibilidad.
+- Clases pequeñas y comprensibles.
+- Menor propagación de cambios.
 
 ---
 
@@ -138,23 +137,27 @@ public interface DaySolver {
 
 #### Aplicación
 
-Para añadir un nuevo día únicamente es necesario:
+Para añadir un nuevo día solo es necesario:
 
-1. Crear la clase `DayXX`.
-2. Crear su parser.
-3. Registrarlo en la propia clase.
+- Añadir la clase
+- Definir su parser
+- Añadir a la clase nueva `DayXX` un bloque estático que registre una instancia de la propia clase.
 
-Sin modificar el resto del sistema.
+No es necesario modificar el resto del sistema.
 
 #### Ejemplo
 
 ```java
+public static DaySolver build(String input) {
+    return new Day13(new Day13Parser().parse(input));
+}
+
 static {
-    DayRegistry.register(1, Day01::build);
+    DayRegistry.register(13, Day13::build);
 }
 ```
 
-Posteriormente:
+Posteriormente, el propio DayRunner se encarga de registrar una instancia del solver, sin necesidad de modificar nada:
 
 ```java
 DaySolver solver = DayRegistry.create(day, input);
@@ -162,11 +165,9 @@ DaySolver solver = DayRegistry.create(day, input);
 
 #### Beneficios
 
-✅ Escalabilidad.
-
-✅ Menor riesgo de introducir errores.
-
-✅ Sistema fácilmente ampliable.
+- Escalabilidad.
+- Menor riesgo de introducir errores.
+- Sistema fácilmente ampliable.
 
 ---
 
@@ -202,11 +203,9 @@ sin afectar al resto del sistema.
 
 #### Beneficios
 
-✅ Desacoplamiento.
-
-✅ Facilidad para pruebas.
-
-✅ Mayor flexibilidad.
+- Desacoplamiento.
+- Facilidad para pruebas.
+- Mayor flexibilidad.
 
 ---
 
