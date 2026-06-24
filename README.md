@@ -227,7 +227,7 @@ public static DaySolver build(String input) {
 }
 ```
 
-El cliente simplemente solicita:
+El runner simplemente solicita:
 
 ```java
 DaySolver solver = DayRegistry.create(day,input);
@@ -486,3 +486,21 @@ La arquitectura logra los atributos de calidad definidos en Ingeniería del Soft
 Este proyecto constituye un ejemplo práctico de aplicación de conceptos de Ingeniería del Software II, demostrando cómo diseñar un sistema modular, extensible y mantenible mediante principios de diseño orientados a objetos y patrones de diseño clásicos.
 
 Más allá de la resolución de problemas algorítmicos, el proyecto busca poner en práctica técnicas empleadas en el desarrollo profesional de software, priorizando la calidad del diseño y la evolución futura del sistema.
+
+---
+
+## 🧪 Tests
+
+Se han implementado tests básicos para verificar que las soluciones de cada día devuelven resultados correctos para ambas partes del problema.
+
+Los tests se utilizan como validación mínima para garantizar que cambios en el código no rompan soluciones existentes.
+
+---
+
+## 🚀 Obtención del proyecto
+
+Puede obtener el proyecto clonando el repositorio:
+
+```bash
+git clone https://github.com/eeriick-j/Advent-Of-Code-2025.git
+```
