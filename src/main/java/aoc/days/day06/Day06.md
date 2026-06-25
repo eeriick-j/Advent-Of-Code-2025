@@ -3,7 +3,7 @@
 ## 📌 Problema
 Existe un grid de dígitos y operadores.
 
-El objetivo es dividir una estructura en bloques y evaluar expresiones 
+El objetivo es dividir una estructura matricial en bloques y evaluar expresiones 
 dentro de cada bloque con distintas estrategias de lectura.
 
 ---
