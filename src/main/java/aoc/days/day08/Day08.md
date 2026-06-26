@@ -60,8 +60,8 @@ Se retorna el producto de los 3 grupos de mayor tamaño.
 
 ## 🔷 Parte 2
 
-Objetivo: obtener el producto del tamaño de los 3 grupos más grandes formados de conectar
-todas las cajas por cercanía.
+Objetivo: obtener el producto del componete X de entre los últimos dos nodos conectados
+tras conectar todas las cajas hasta que quede 1 único componente.
 
 Se parte de:
 - `List<Box>` con coordenadas (X,Y,Z)
