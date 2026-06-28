@@ -36,8 +36,8 @@ public class Day09 implements DaySolver {
     }
 
     private long area(Point a, Point b) {
-        long dx = Math.abs(a.x() - b.x() + 1);
-        long dy = Math.abs(a.y() - b.y() + 1);
+        long dx = Math.abs(a.x() - b.x()) + 1;
+        long dy = Math.abs(a.y() - b.y()) + 1;
         return dx * dy;
     }
 
